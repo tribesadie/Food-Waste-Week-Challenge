@@ -3,24 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>September Save-Off | Leaderboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>September Save-Off | Swiss School Challenge</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS: The foodwaste.ch Aesthetic */
+        /* CSS: The foodwaste.ch Aesthetic Palette */
         :root {
             --turquoise: #3dbcc0;
             --bright-green: #8cc63f;
             --orange: #f7941d;
-            --light-gray: #f9f7f2; 
+            --off-white: #f9f7f2;
             --dark-text: #333333;
+            --white: #ffffff;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #ffffff;
+            background-color: var(--white);
             margin: 0;
             padding: 20px;
             color: var(--dark-text);
+            line-height: 1.6;
         }
 
         .container {
@@ -28,7 +30,7 @@
             margin: 40px auto;
         }
 
-        /* Header Area */
+        /* Header Section */
         header {
             text-align: center;
             margin-bottom: 40px;
@@ -37,23 +39,66 @@
         h1 {
             font-family: 'Montserrat', sans-serif;
             color: var(--turquoise);
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             margin-bottom: 10px;
+            letter-spacing: -1px;
         }
 
         .subtitle {
             font-size: 1.1rem;
             color: #666;
-            max-width: 600px;
+            max-width: 700px;
             margin: 0 auto;
+        }
+
+        /* Icon Legend Section */
+        .legend-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+            text-align: center;
+            background: var(--white);
+            padding: 25px;
+            border-radius: 20px;
+            border: 1px solid #eee;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+        }
+
+        .legend-item {
+            flex: 1;
+            padding: 0 10px;
+        }
+
+        .legend-item:not(:last-child) {
+            border-right: 1px solid #eee;
+        }
+
+        .legend-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .legend-title {
+            display: block;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+        }
+
+        .legend-desc {
+            font-size: 0.8rem;
+            color: #777;
         }
 
         /* The Leaderboard Card */
         .card {
-            background: var(--light-gray);
-            border-radius: 20px;
+            background: var(--off-white);
+            border-radius: 25px;
             padding: 40px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
             border: 1px solid #eee;
         }
 
@@ -61,160 +106,163 @@
             display: inline-block;
             background: var(--turquoise);
             color: white;
-            padding: 5px 15px;
+            padding: 6px 18px;
             border-radius: 50px;
-            font-weight: bold;
-            font-size: 0.8rem;
-            margin-bottom: 20px;
+            font-weight: 700;
+            font-size: 0.75rem;
+            margin-bottom: 25px;
             text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         table {
             width: 100%;
             border-collapse: separate;
-            border-spacing: 0 10px; /* Space between rows */
+            border-spacing: 0 12px;
         }
 
         th {
             text-align: left;
-            padding: 10px 20px;
-            color: #888;
-            font-size: 0.9rem;
+            padding: 0 20px;
+            color: #999;
+            font-size: 0.8rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
+            letter-spacing: 1.5px;
         }
 
+        /* Row Styling */
         tr.competitor-row {
-            background: white;
-            transition: transform 0.2s;
+            background: var(--white);
+            transition: all 0.3s ease;
         }
 
         tr.competitor-row:hover {
-            transform: scale(1.01);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
         td {
             padding: 20px;
+            vertical-align: middle;
         }
 
-        /* Rounded corners for individual rows */
-        td:first-child { border-radius: 15px 0 0 15px; }
+        td:first-child { border-radius: 15px 0 0 15px; width: 60px; }
         td:last-child { border-radius: 0 15px 15px 0; text-align: right; }
 
         .rank-number {
             font-weight: 700;
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             color: var(--turquoise);
         }
 
+        .school-info {
+            display: flex;
+            flex-direction: column;
+        }
+
         .school-name {
-            font-weight: 600;
-            display: block;
-            font-size: 1.1rem;
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--dark-text);
         }
 
         .class-id {
-            color: #999;
-            font-size: 0.9rem;
+            color: #aaa;
+            font-size: 0.85rem;
+            font-weight: 600;
         }
 
         .score-badge {
             background: var(--bright-green);
             color: white;
-            padding: 8px 18px;
-            border-radius: 10px;
+            padding: 10px 20px;
+            border-radius: 12px;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.2rem;
+            display: inline-block;
         }
 
-        /* Gold highlight for #1 */
+        /* Special Styling for Rank #1 */
         tr.first-place {
-            border: 2px solid var(--orange);
+            outline: 2px solid var(--orange);
         }
         tr.first-place td {
-            background: #fff9f2; /* Light orange tint */
+            background: #fffdfa;
         }
         tr.first-place .rank-number {
             color: var(--orange);
         }
 
-        .loading {
+        /* Impact Counter Section */
+        .impact-footer {
+            margin-top: 40px;
             text-align: center;
-            padding: 40px;
+            padding: 30px;
+            background: var(--turquoise);
+            color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(61, 188, 192, 0.2);
+        }
+
+        .impact-label {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            opacity: 0.9;
+        }
+
+        .impact-number {
+            font-size: 3rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .impact-desc {
+            font-size: 0.9rem;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .loading-text {
+            text-align: center;
+            padding: 50px;
             color: var(--turquoise);
-            font-weight: bold;
+            font-weight: 600;
+            font-style: italic;
+        }
+
+        @media (max-width: 600px) {
+            .legend-container { flex-direction: column; gap: 20px; }
+            .legend-item:not(:last-child) { border-right: none; border-bottom: 1px solid #eee; padding-bottom: 20px; }
+            h1 { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
-    <div style="margin-top: 30px; text-align: center; padding: 20px; background: var(--turquoise); color: white; border-radius: 15px;">
-        <h3 style="margin: 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Total Swiss Impact</h3>
-        <div style="font-size: 2rem; font-weight: bold;" id="totalImpact">Calculating...</div>
-        <p style="margin: 5px 0 0 0; font-size: 0.8rem; opacity: 0.9;">Total kitchen actions taken this week across Switzerland.</p>
-    </div>
-<div style="display: flex; justify-content: space-around; margin-bottom: 30px; text-align: center;">
-    <div>
-        <div style="font-size: 2rem;">🦸‍♂️</div>
-        <strong style="color: var(--orange);">The Rescue</strong>
-        <p style="font-size: 0.8rem; margin: 0;">Eat leftovers (10 pts)</p>
-    </div>
-    <div>
-        <div style="font-size: 2rem;">👨‍🍳</div>
-        <strong style="color: var(--turquoise);">The Chef</strong>
-        <p style="font-size: 0.8rem; margin: 0;">Creative reuse (15 pts)</p>
-    </div>
-    <div>
-        <div style="font-size: 2rem;">🛡️</div>
-        <strong style="color: var(--bright-green);">The Guard</strong>
-        <p style="font-size: 0.8rem; margin: 0;">Smart storage (5 pts)</p>
-    </div>
-</div>
+
 <div class="container">
     <header>
         <h1>SEPTEMBER SAVE-OFF</h1>
-        <p class="subtitle">Join thousands of students across Switzerland nudging their families to rescue food and protect our planet.</p>
+        <p class="subtitle">Turning Swiss students into Kitchen Heroes. One meal, one storage hack, and one creative recipe at a time.</p>
     </header>
 
-    <div class="card">
-        <div class="card-label">Live Standings</div>
-        
-        <table id="leaderboard">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>Competitor</th>
-                    <th>Fair Play Score</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <tr>
-                    <td colspan="3" class="loading">Loading Swiss results...</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-    <div class="container">
-    <header>
-        <h1>SEPTEMBER SAVE-OFF</h1>
-        <p class="subtitle">Empowering Swiss students to nudge their families toward a zero-waste kitchen.</p>
-    </header>
-
-    <div style="display: flex; justify-content: space-around; margin-bottom: 30px; text-align: center; background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee;">
-        <div style="flex: 1;">
-            <div style="font-size: 2.5rem; margin-bottom: 5px;">🦸‍♂️</div>
-            <strong style="color: var(--orange); display: block;">THE RESCUE</strong>
-            <span style="font-size: 0.85rem; color: #666;">Eat leftovers (10 pts)</span>
+    <div class="legend-container">
+        <div class="legend-item">
+            <span class="legend-emoji">🦸‍♂️</span>
+            <span class="legend-title" style="color: var(--orange);">The Rescue</span>
+            <span class="legend-desc">Eat leftovers instead of tossing (10 pts)</span>
         </div>
-        <div style="flex: 1; border-left: 1px solid #eee; border-right: 1px solid #eee;">
-            <div style="font-size: 2.5rem; margin-bottom: 5px;">👨‍🍳</div>
-            <strong style="color: var(--turquoise); display: block;">THE CHEF</strong>
-            <span style="font-size: 0.85rem; color: #666;">Creative reuse (15 pts)</span>
+        <div class="legend-item">
+            <span class="legend-emoji">👨‍🍳</span>
+            <span class="legend-title" style="color: var(--turquoise);">The Chef</span>
+            <span class="legend-desc">Creative reuse of "waste" items (15 pts)</span>
         </div>
-        <div style="flex: 1;">
-            <div style="font-size: 2.5rem; margin-bottom: 5px;">🛡️</div>
-            <strong style="color: var(--bright-green); display: block;">THE GUARD</strong>
-            <span style="font-size: 0.85rem; color: #666;">Smart storage (5 pts)</span>
+        <div class="legend-item">
+            <span class="legend-emoji">🛡️</span>
+            <span class="legend-title" style="color: var(--bright-green);">The Guard</span>
+            <span class="legend-desc">Correct storage to prolong life (5 pts)</span>
         </div>
     </div>
 
@@ -229,62 +277,102 @@
                 </tr>
             </thead>
             <tbody id="tableBody">
-                </tbody>
+                <tr>
+                    <td colspan="3" class="loading-text">Syncing with Swiss school data...</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
-    
+    <div class="impact-footer">
+        <div class="impact-label">Total Swiss Impact</div>
+        <div class="impact-number" id="totalImpact">0</div>
+        <div class="impact-desc">Collective actions taken by students and parents this week.</div>
+    </div>
 </div>
 
 <script>
+    // Live link to your Google Sheets Pivot Table CSV
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
 
-    async function fetchLeaderboard() {
+    async function updateDashboard() {
         try {
             const response = await fetch(csvUrl);
-            const csvData = await response.text();
-            const rows = csvData.split('\n').slice(1);
+            const csvText = await response.text();
+            
+            // Clean the data: Split by lines and remove the header row
+            const rows = csvText.split('\n').slice(1);
+            
             const tableBody = document.getElementById('tableBody');
-            tableBody.innerHTML = '';
-
+            const impactDisplay = document.getElementById('totalImpact');
+            
+            tableBody.innerHTML = ''; // Clear the loading text
+            
             let competitors = [];
+            let totalActions = 0;
 
             rows.forEach(row => {
                 const cols = row.split(',');
-                const school = cols[0]?.trim();
-                const classId = cols[1]?.trim();
+                
+                // MAPPING (based on your specific Pivot Table layout):
+                // cols[0] = School Name
+                // cols[1] = Class ID
+                // cols[2,3,4] = Raw Action Counts (Rescue, Chef, Guard)
+                // cols[6] = Fair Play Score
+                
+                const school = cols[0] ? cols[0].trim() : "";
+                const classId = cols[1] ? cols[1].trim() : "";
+                
+                // Calculate Global Actions (The Impact Counter)
+                const rCount = parseInt(cols[2]) || 0;
+                const cCount = parseInt(cols[3]) || 0;
+                const gCount = parseInt(cols[4]) || 0;
+                totalActions += (rCount + cCount + gCount);
+
                 const score = parseFloat(cols[6]);
 
-                if (school && !school.toLowerCase().includes("total") && !isNaN(score)) {
+                // Filter: Ignore empty rows and summary/total rows from Google Sheets
+                if (school && !school.toLowerCase().includes("total") && !school.toLowerCase().includes("grand") && !isNaN(score)) {
                     competitors.push({ school, classId, score });
                 }
             });
 
+            // UI Update: The National Impact Counter
+            impactDisplay.innerText = totalActions.toLocaleString();
+
+            // UI Update: Sort competitors (High Score -> Low Score)
             competitors.sort((a, b) => b.score - a.score);
 
             competitors.forEach((c, index) => {
                 const tr = document.createElement('tr');
                 tr.className = 'competitor-row' + (index === 0 ? ' first-place' : '');
-
+                
                 tr.innerHTML = `
                     <td class="rank-number">${index + 1}</td>
                     <td>
-                        <span class="school-name">${c.school}</span>
-                        <span class="class-id">Class ${c.classId}</span>
+                        <div class="school-info">
+                            <span class="school-name">${c.school}</span>
+                            <span class="class-id">Class ${c.classId}</span>
+                        </div>
                     </td>
-                    <td><span class="score-badge">${c.score.toFixed(2)}</span></td>
+                    <td style="text-align: right;">
+                        <span class="score-badge">${c.score.toFixed(2)}</span>
+                    </td>
                 `;
                 tableBody.appendChild(tr);
             });
 
-        } catch (error) {
-            console.error('Error:', error);
-            document.getElementById('tableBody').innerHTML = '<tr><td colspan="3">Please check your connection or Refresh.</td></tr>';
+        } catch (err) {
+            console.error('Data Sync Error:', err);
+            document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center; color:red;">Connection error. Please refresh.</td></tr>';
         }
     }
 
-    fetchLeaderboard();
-    setInterval(fetchLeaderboard, 60000); // Refreshes every minute
+    // Initial Load
+    updateDashboard();
+
+    // Live Refresh: Updates the data every 60 seconds without reloading the page
+    setInterval(updateDashboard, 60000);
 </script>
 
 </body>
