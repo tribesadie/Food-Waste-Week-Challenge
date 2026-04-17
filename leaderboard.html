@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiss September Save-Off Leaderboard</title>
+    <style>
+        /* CSS: The "Look & Feel" */
+        :root {
+            --swiss-red: #e63946;
+            --dark-blue: #1d3557;
+            --light-bg: #f8f9fa;
+            --gold: #ffb703;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--light-bg);
+            margin: 0;
+            padding: 40px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 3px solid var(--swiss-red);
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--swiss-red);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+        }
+
+        p.subtitle {
+            color: #666;
+            font-style: italic;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        th {
+            background-color: var(--dark-blue);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+        }
+
+        td {
+            padding: 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 1rem;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Styling for the Rankings */
+        .rank-cell {
+            font-weight: bold;
+            width: 50px;
+            text-align: center;
+        }
+
+        .first-place {
+            background-color: #fff9e6;
+        }
+
+        .first-place .rank-cell {
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .score-badge {
+            background: var(--dark-blue);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 20px;
+            font-style: italic;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <h1>🏆 September Save-Off 🏆</h1>
+        <p class="subtitle">Live Competition: Swiss Schools vs. Food Waste</p>
+    </header>
+
+    <table id="leaderboardTable">
+        <thead>
+            <tr>
+                <th class="rank-cell">Rank</th>
+                <th>School Name</th>
+                <th>Class ID</th>
+                <th>Fair Play Score</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody">
+            <tr>
+                <td colspan="4" class="loading">Fetching latest scores from Switzerland...</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // Your specific CSV URL from Google Sheets
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
+
+    async function fetchLeaderboard() {
+        try {
+            const response = await fetch(csvUrl);
+            const csvData = await response.text();
+            
+            // Split into rows and remove the header
+            const rows = csvData.split('\n').slice(1);
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = ''; // Clear loading message
+
+            let competitors = [];
+
+            rows.forEach(row => {
+                const cols = row.split(',');
+                
+                // DATA MAPPING based on your image:
+                // cols[0] = School Name
+                // cols[1] = Class ID
+                // cols[6] = Fair Play Score
+                
+                const school = cols[0] ? cols[0].trim() : "";
+                const classId = cols[1] ? cols[1].trim() : "";
+                const score = cols[6] ? parseFloat(cols[6]) : 0;
+
+                // Only add rows that have a valid school name and aren't "Total" rows
+                if (school && school !== "" && !school.toLowerCase().includes("total") && !school.toLowerCase().includes("grand")) {
+                    competitors.push({ school, classId, score });
+                }
+            });
+
+            // Sort competitors by score (highest to lowest)
+            competitors.sort((a, b) => b.score - a.score);
+
+            // Create the HTML for the table
+            competitors.forEach((c, index) => {
+                const tr = document.createElement('tr');
+                if (index === 0) tr.className = 'first-place';
+
+                tr.innerHTML = `
+                    <td class="rank-cell">${index + 1}</td>
+                    <td>${c.school}</td>
+                    <td>${c.classId}</td>
+                    <td><span class="score-badge">${c.score.toFixed(2)}</span></td>
+                `;
+                tableBody.appendChild(tr);
+            });
+
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            document.getElementById('tableBody').innerHTML = '<tr><td colspan="4" style="color:red; text-align:center;">Error loading data. Please check your internet connection.</td></tr>';
+        }
+    }
+
+    // Run the function when the page loads
+    fetchLeaderboard();
+
+    // Refresh the data every 2 minutes to keep it "live"
+    setInterval(fetchLeaderboard, 120000);
+</script>
+
+</body>
+</html>
