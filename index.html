@@ -11,7 +11,7 @@
             --turquoise: #3dbcc0;
             --bright-green: #8cc63f;
             --orange: #f7941d;
-            --light-gray: #f9f7f2; /* Soft off-white like their cards */
+            --light-gray: #f9f7f2; 
             --dark-text: #333333;
         }
 
@@ -187,6 +187,51 @@
                 </tr>
             </tbody>
         </table>
+    </div>
+</div>
+    <div class="container">
+    <header>
+        <h1>SEPTEMBER SAVE-OFF</h1>
+        <p class="subtitle">Empowering Swiss students to nudge their families toward a zero-waste kitchen.</p>
+    </header>
+
+    <div style="display: flex; justify-content: space-around; margin-bottom: 30px; text-align: center; background: #fff; padding: 20px; border-radius: 15px; border: 1px solid #eee;">
+        <div style="flex: 1;">
+            <div style="font-size: 2.5rem; margin-bottom: 5px;">🦸‍♂️</div>
+            <strong style="color: var(--orange); display: block;">THE RESCUE</strong>
+            <span style="font-size: 0.85rem; color: #666;">Eat leftovers (10 pts)</span>
+        </div>
+        <div style="flex: 1; border-left: 1px solid #eee; border-right: 1px solid #eee;">
+            <div style="font-size: 2.5rem; margin-bottom: 5px;">👨‍🍳</div>
+            <strong style="color: var(--turquoise); display: block;">THE CHEF</strong>
+            <span style="font-size: 0.85rem; color: #666;">Creative reuse (15 pts)</span>
+        </div>
+        <div style="flex: 1;">
+            <div style="font-size: 2.5rem; margin-bottom: 5px;">🛡️</div>
+            <strong style="color: var(--bright-green); display: block;">THE GUARD</strong>
+            <span style="font-size: 0.85rem; color: #666;">Smart storage (5 pts)</span>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-label">Live Standings</div>
+        <table id="leaderboard">
+            <thead>
+                <tr>
+                    <th>Rank</th>
+                    <th>School & Class</th>
+                    <th style="text-align: right;">Fair Play Score</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top: 30px; text-align: center; padding: 20px; background: var(--turquoise); color: white; border-radius: 15px;">
+        <h3 style="margin: 0; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Total Swiss Impact</h3>
+        <div style="font-size: 2rem; font-weight: bold;" id="totalImpact">Calculating...</div>
+        <p style="margin: 5px 0 0 0; font-size: 0.8rem; opacity: 0.9;">Total kitchen actions taken this week across Switzerland.</p>
     </div>
 </div>
 
