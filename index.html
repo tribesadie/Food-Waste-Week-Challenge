@@ -4,19 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weniger wegwerfen Woche | Case Board</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
+        /* Modern Detective Palette */
         :root {
             --detective-teal: #3dbcc0;
             --evidence-green: #8cc63f;
             --clue-coral: #ff6f61;
             --case-file-white: #f9f7f2;
             --dark-text: #2d3436;
+            --white: #ffffff;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: #ffffff;
+            background-color: var(--white);
             margin: 0;
             padding: 20px;
             color: var(--dark-text);
@@ -27,6 +29,7 @@
             margin: 40px auto;
         }
 
+        /* Header Section */
         header {
             text-align: center;
             margin-bottom: 50px;
@@ -35,19 +38,21 @@
         h1 {
             font-family: 'Montserrat', sans-serif;
             color: var(--detective-teal);
-            font-size: 3rem;
+            font-size: 2.8rem;
             margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .sub-header {
+            font-weight: 800;
+            color: var(--clue-coral);
+            letter-spacing: 2px;
+            font-size: 0.95rem;
             text-transform: uppercase;
         }
 
-        .case-status {
-            font-weight: 700;
-            color: var(--clue-coral);
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-        }
-
-        /* Detective Legend */
+        /* Investigation Legend */
         .investigation-legend {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -55,66 +60,64 @@
             margin-bottom: 40px;
             background: var(--case-file-white);
             padding: 25px;
-            border-radius: 15px;
+            border-radius: 20px;
             border-left: 8px solid var(--detective-teal);
         }
 
-        .clue-type {
-            text-align: center;
-        }
-
+        .clue-type { text-align: center; }
         .clue-icon { font-size: 2.2rem; display: block; margin-bottom: 8px; }
-        .clue-label { font-weight: 700; color: var(--detective-teal); font-size: 0.85rem; display: block; }
-        .clue-points { font-size: 0.75rem; color: #636e72; }
+        .clue-label { font-weight: 700; color: var(--detective-teal); font-size: 0.85rem; display: block; text-transform: uppercase; }
+        .clue-points { font-size: 0.75rem; color: #636e72; font-weight: 600; }
 
         /* Podium Leaderboard */
         .podium-card {
-            background: white;
+            background: var(--white);
             border: 2px solid #eee;
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
         }
 
         .school-header {
             font-family: 'Montserrat', sans-serif;
             color: var(--detective-teal);
             font-size: 1.5rem;
-            margin-bottom: 25px;
-            border-bottom: 2px solid var(--case-file-white);
-            padding-bottom: 10px;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--case-file-white);
         }
 
         table { width: 100%; border-collapse: collapse; }
         
-        tr.rank-row {
-            transition: 0.3s;
-            border-bottom: 1px solid #eee;
-        }
+        tr.rank-row { border-bottom: 1px solid #f1f1f1; transition: 0.3s; }
+        tr.rank-row:last-child { border-bottom: none; }
+        tr.rank-row:hover { background-color: #fafafa; }
 
-        td { padding: 20px 10px; }
+        td { padding: 25px 10px; }
 
         .rank-id {
+            font-family: 'Montserrat', sans-serif;
             font-weight: 800;
-            font-size: 1.5rem;
-            width: 50px;
+            font-size: 1.8rem;
+            width: 60px;
         }
 
-        /* Top 3 Highlighting */
+        /* Rank-specific colors */
         tr.rank-1 .rank-id { color: var(--clue-coral); }
         tr.rank-2 .rank-id { color: var(--detective-teal); }
         tr.rank-3 .rank-id { color: var(--evidence-green); }
 
-        .unit-name { font-weight: 700; font-size: 1.2rem; }
-        .fair-play-label { font-size: 0.8rem; color: #b2bec3; text-transform: uppercase; }
+        .unit-name { font-weight: 700; font-size: 1.25rem; display: block; }
+        .fair-play-label { font-size: 0.75rem; color: #b2bec3; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
 
         .score-box {
             background: var(--evidence-green);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 10px;
+            color: var(--white);
+            padding: 10px 18px;
+            border-radius: 12px;
             font-weight: 800;
-            font-size: 1.3rem;
+            font-size: 1.4rem;
+            display: inline-block;
             float: right;
         }
 
@@ -122,47 +125,56 @@
         .national-report {
             margin-top: 50px;
             background: var(--dark-text);
-            color: white;
-            padding: 40px;
-            border-radius: 20px;
+            color: var(--white);
+            padding: 45px;
+            border-radius: 25px;
             text-align: center;
         }
 
         .impact-val {
-            font-size: 3.5rem;
+            font-size: 4rem;
             font-weight: 800;
             color: var(--evidence-green);
             font-family: 'Montserrat', sans-serif;
-            margin: 10px 0;
+            margin: 15px 0;
         }
 
-        .impact-sub { font-size: 0.9rem; opacity: 0.8; max-width: 500px; margin: 0 auto; }
+        .impact-sub { font-size: 0.95rem; opacity: 0.8; max-width: 550px; margin: 0 auto; line-height: 1.5; }
+
+        .loading-overlay { text-align: center; padding: 40px; font-weight: 700; color: var(--detective-teal); }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .investigation-legend { grid-template-columns: 1fr; }
+            .rank-id { font-size: 1.4rem; width: 40px; }
+            .score-box { font-size: 1.1rem; padding: 8px 12px; }
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="case-status">OFFICIAL INVESTIGATION LOG</div>
+        <div class="sub-header">Case Recovery Status: Active</div>
         <h1>Weniger wegwerfen Woche</h1>
-        <p>Solving the case of the missing 620 CHF per person. [cite: 55]</p>
+        <p style="color: #636e72; font-weight: 600;">SOLVING THE MYSTERY OF THE HIDDEN HARVEST</p>
     </header>
 
     <div class="investigation-legend">
         <div class="clue-type">
             <span class="clue-icon">🕵️‍♀️</span>
             <span class="clue-label">The Second Chance</span>
-            <span class="clue-points">Rescue (10 pts)</span>
+            <span class="clue-points">RESCUE (10 PTS)</span>
         </div>
         <div class="clue-type">
             <span class="clue-icon">🎨</span>
             <span class="clue-label">The Master Disguise</span>
-            <span class="clue-points">Chef (15 pts)</span>
+            <span class="clue-points">CHEF (15 PTS)</span>
         </div>
         <div class="clue-type">
             <span class="clue-icon">🔒</span>
             <span class="clue-label">The Safekeeping</span>
-            <span class="clue-points">Guard (5 pts)</span>
+            <span class="clue-points">GUARD (5 PTS)</span>
         </div>
     </div>
 
@@ -170,80 +182,93 @@
         <div class="school-header" id="currentSchool">LOCAL UNIT STANDINGS</div>
         <table id="leaderboard">
             <tbody id="tableBody">
-                </tbody>
+                <tr>
+                    <td colspan="3" class="loading-overlay">Analyzing evidence files...</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
     <div class="national-report">
-        <div class="case-status" style="color: var(--detective-teal);">SWISS CASE RECOVERY PROGRESS</div>
+        <div style="text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.8rem; color: var(--detective-teal);">Closing the 25% Implementation Gap</div>
         <div class="impact-val" id="totalImpact">0</div>
-        <p class="impact-sub">Total "Hero Actions" logged across the nation to close the 2030 implementation gap. [cite: 11, 15]</p>
+        <p class="impact-sub">Total "Hero Actions" logged by Swiss Waste Detectives this week to ensure no edible food is left behind.</p>
     </div>
 </div>
 
 <script>
-    const csvUrl = 'YOUR_GOOGLE_SHEET_CSV_LINK_HERE';
-    const targetSchool = "Your School Name"; // Set this to filter per school
+    // CSV URL from your Google Sheet
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
+    
+    // Filter this for the specific school you are presenting
+    const targetSchool = "Your School Name"; 
 
-    async function updateBoard() {
+    async function fetchCaseData() {
         try {
             const response = await fetch(csvUrl);
-            const data = await response.text();
-            const rows = data.split('\n').slice(1);
+            const csvText = await response.text();
+            const rows = csvText.split('\n').slice(1);
             
             let allCompetitors = [];
             let totalActions = 0;
 
             rows.forEach(row => {
                 const cols = row.split(',');
-                const school = cols[0]?.trim();
-                const classId = cols[1]?.trim();
+                const schoolName = cols[0]?.trim();
+                const classIdentifier = cols[1]?.trim();
                 
-                // Impact Logic
+                // Tally global actions (Rescue + Chef + Guard)
                 const r = parseInt(cols[2]) || 0;
                 const c = parseInt(cols[3]) || 0;
                 const g = parseInt(cols[4]) || 0;
                 totalActions += (r + c + g);
 
-                const score = parseFloat(cols[6]);
+                const fairPlayScore = parseFloat(cols[6]);
 
-                if (school === targetSchool && !isNaN(score)) {
-                    allCompetitors.push({ classId, score });
+                // Filter for top units in the specific school
+                if (schoolName === targetSchool && !isNaN(fairPlayScore)) {
+                    allCompetitors.push({ classIdentifier, fairPlayScore });
                 }
             });
 
-            // UI Update: Impact
+            // Update UI: National Counter
             document.getElementById('totalImpact').innerText = totalActions.toLocaleString();
             document.getElementById('currentSchool').innerText = `${targetSchool.toUpperCase()} TOP INVESTIGATORS`;
 
-            // UI Update: Ranking (Top 3 only)
-            allCompetitors.sort((a, b) => b.score - a.score);
-            const topThree = allCompetitors.slice(0, 3);
+            // UI Ranking: Sort High -> Low and take Top 3
+            allCompetitors.sort((a, b) => b.fairPlayScore - a.fairPlayScore);
+            const podiumUnits = allCompetitors.slice(0, 3);
             
             const tableBody = document.getElementById('tableBody');
             tableBody.innerHTML = '';
 
-            topThree.forEach((unit, index) => {
+            if (podiumUnits.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="3" class="loading-overlay">No active cases reported for this unit yet.</td></tr>';
+            }
+
+            podiumUnits.forEach((unit, index) => {
                 const tr = document.createElement('tr');
                 tr.className = `rank-row rank-${index + 1}`;
                 tr.innerHTML = `
                     <td class="rank-id">#${index + 1}</td>
                     <td>
-                        <div class="unit-name">Class ${unit.classId}</div>
+                        <div class="unit-name">Class ${unit.classIdentifier}</div>
                         <div class="fair-play-label">Fair Play Evidence Score</div>
                     </td>
-                    <td><div class="score-box">${unit.score.toFixed(2)}</div></td>
+                    <td><div class="score-box">${unit.fairPlayScore.toFixed(2)}</div></td>
                 `;
                 tableBody.appendChild(tr);
             });
 
-        } catch (e) {
-            console.error("Board sync error:", e);
+        } catch (error) {
+            console.error("Critical System Error:", error);
+            document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" class="loading-overlay">Evidence sync failed. Re-initiating...</td></tr>';
         }
     }
 
-    updateBoard();
-    setInterval(updateBoard, 60000);
+    // Auto-refresh the investigation every 60 seconds
+    fetchCaseData();
+    setInterval(fetchCaseData, 60000);
 </script>
 
 </body>
