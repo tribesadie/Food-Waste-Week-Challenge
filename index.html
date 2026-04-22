@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weniger wegwerfen Woche | Case Board</title>
+    <title>Weniger wegwerfen Woche | Case Board Winterthur</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,160 +15,51 @@
             --white: #ffffff;
         }
 
-        body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--white);
-            margin: 0;
-            padding: 20px;
-            color: var(--dark-text);
-        }
-
-        .container {
-            max-width: 850px;
-            margin: 40px auto;
-        }
-
-        header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        h1 {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--detective-teal);
-            font-size: 2.8rem;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            letter-spacing: -1px;
-        }
-
-        .sub-header {
-            font-weight: 800;
-            color: var(--clue-coral);
-            letter-spacing: 2px;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-        }
+        body { font-family: 'Open Sans', sans-serif; background-color: var(--white); margin: 0; padding: 20px; color: var(--dark-text); }
+        .container { max-width: 850px; margin: 40px auto; }
+        header { text-align: center; margin-bottom: 50px; }
+        h1 { font-family: 'Montserrat', sans-serif; color: var(--detective-teal); font-size: 2.8rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: -1px; }
+        .sub-header { font-weight: 800; color: var(--clue-coral); letter-spacing: 2px; font-size: 0.95rem; text-transform: uppercase; }
 
         .investigation-legend {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-            margin-bottom: 40px;
-            background: var(--case-file-white);
-            padding: 25px;
-            border-radius: 20px;
-            border-left: 8px solid var(--detective-teal);
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;
+            background: var(--case-file-white); padding: 25px; border-radius: 20px; border-left: 8px solid var(--detective-teal);
         }
-
         .clue-type { text-align: center; }
         .clue-icon { font-size: 2.2rem; display: block; margin-bottom: 8px; }
         .clue-label { font-weight: 700; color: var(--detective-teal); font-size: 0.85rem; display: block; text-transform: uppercase; }
         .clue-points { font-size: 0.75rem; color: #636e72; font-weight: 600; }
 
         .podium-card {
-            background: var(--white);
-            border: 2px solid #eee;
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            background: var(--white); border: 2px solid #eee; border-radius: 25px;
+            padding: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.06);
         }
-
-        .school-header {
-            font-family: 'Montserrat', sans-serif;
-            color: var(--detective-teal);
-            font-size: 1.5rem;
-            margin-bottom: 30px;
-            padding-bottom: 12px;
-            border-bottom: 3px solid var(--case-file-white);
-        }
+        .school-header { font-family: 'Montserrat', sans-serif; color: var(--detective-teal); font-size: 1.5rem; margin-bottom: 30px; padding-bottom: 12px; border-bottom: 3px solid var(--case-file-white); }
 
         table { width: 100%; border-collapse: collapse; }
         tr.rank-row { border-bottom: 1px solid #f1f1f1; transition: 0.3s; }
-        tr.rank-row:hover { background-color: #fafafa; }
         td { padding: 25px 10px; }
-
-        .rank-id {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 800;
-            font-size: 1.8rem;
-            width: 60px;
-        }
-
+        .rank-id { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.8rem; width: 60px; }
         tr.rank-1 .rank-id { color: var(--clue-coral); }
         tr.rank-2 .rank-id { color: var(--detective-teal); }
         tr.rank-3 .rank-id { color: var(--evidence-green); }
 
         .unit-name { font-weight: 700; font-size: 1.25rem; display: block; }
-        .score-box {
-            background: var(--evidence-green);
-            color: var(--white);
-            padding: 10px 18px;
-            border-radius: 12px;
-            font-weight: 800;
-            font-size: 1.4rem;
-            float: right;
-        }
+        .score-box { background: var(--evidence-green); color: var(--white); padding: 10px 18px; border-radius: 12px; font-weight: 800; font-size: 1.4rem; float: right; }
 
-        .national-report {
-            margin-top: 50px;
-            background: var(--dark-text);
-            color: var(--white);
-            padding: 45px;
-            border-radius: 25px;
-            text-align: center;
-            margin-bottom: 40px;
-        }
+        .national-report { margin-top: 50px; background: var(--dark-text); color: var(--white); padding: 45px; border-radius: 25px; text-align: center; }
+        .impact-val { font-size: 4rem; font-weight: 800; color: var(--evidence-green); font-family: 'Montserrat', sans-serif; margin: 15px 0; }
 
-        .impact-val {
-            font-size: 4rem;
-            font-weight: 800;
-            color: var(--evidence-green);
-            font-family: 'Montserrat', sans-serif;
-            margin: 15px 0;
-        }
-
-        /* NEW: Footer Logo Section */
-        .footer-logos {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 60px;
-            padding-top: 40px;
-            border-top: 2px solid var(--case-file-white);
-            margin-top: 40px;
-        }
-
-        .footer-logos img {
-            max-height: 55px; /* Keeps logos elegant and consistent */
-            filter: grayscale(20%); /* Modern look */
-            transition: 0.3s;
-        }
-
-        .footer-logos img:hover {
-            filter: grayscale(0%);
-        }
-
-        .partner-label {
-            text-align: center;
-            font-size: 0.75rem;
-            font-weight: 700;
-            color: #b2bec3;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 600px) {
-            .footer-logos { flex-direction: column; gap: 30px; }
-        }
+        .footer-logos { display: flex; justify-content: center; align-items: center; gap: 60px; padding-top: 40px; border-top: 2px solid var(--case-file-white); margin-top: 40px; }
+        .footer-logos img { max-height: 55px; filter: grayscale(20%); transition: 0.3s; }
+        .partner-label { text-align: center; font-size: 0.75rem; font-weight: 700; color: #b2bec3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <div class="sub-header">Case Recovery Status: Active</div>
+        <div class="sub-header">Case Recovery Status: Active in Winterthur</div>
         <h1>Weniger wegwerfen Woche</h1>
         <p style="color: #636e72; font-weight: 600;">SOLVING THE MYSTERY OF THE HIDDEN HARVEST</p>
     </header>
@@ -192,20 +83,18 @@
     </div>
 
     <div class="podium-card">
-        <div class="school-header" id="currentSchool">LOCAL UNIT STANDINGS</div>
+        <div class="school-header" id="currentSchool">PRIMARSCHULE NEUWIESEN TOP INVESTIGATORS</div>
         <table id="leaderboard">
             <tbody id="tableBody">
-                <tr>
-                    <td colspan="3" style="text-align:center; padding: 40px;">Analyzing evidence files...</td>
-                </tr>
+                <tr><td colspan="3" style="text-align:center; padding: 40px;">Analyzing Winterthur evidence files...</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="national-report">
-        <div style="text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.8rem; color: var(--detective-teal);">Closing the 25% Implementation Gap</div>
+        <div style="text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.8rem; color: var(--detective-teal);">National Case Progress</div>
         <div class="impact-val" id="totalImpact">0</div>
-        <p style="opacity: 0.8; font-size: 0.95rem;">Total "Hero Actions" logged by Swiss Waste Detectives this week.</p>
+        <p style="opacity: 0.8; font-size: 0.95rem;">Total actions taken by Waste Detectives to close the 2030 implementation gap[cite: 15].</p>
     </div>
 
     <div class="partner-label">Core Strategic Partners</div>
@@ -217,7 +106,7 @@
 
 <script>
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
-    const targetSchool = "Your School Name"; 
+    const targetSchool = "Primarschule Neuwiesen"; 
 
     async function fetchCaseData() {
         try {
@@ -246,8 +135,6 @@
             });
 
             document.getElementById('totalImpact').innerText = totalActions.toLocaleString();
-            document.getElementById('currentSchool').innerText = `${targetSchool.toUpperCase()} TOP INVESTIGATORS`;
-
             allCompetitors.sort((a, b) => b.fairPlayScore - a.fairPlayScore);
             const podiumUnits = allCompetitors.slice(0, 3);
             
@@ -267,10 +154,7 @@
                 `;
                 tableBody.appendChild(tr);
             });
-
-        } catch (error) {
-            console.error("Board sync failed.");
-        }
+        } catch (error) { console.error("Sync failed."); }
     }
 
     fetchCaseData();
