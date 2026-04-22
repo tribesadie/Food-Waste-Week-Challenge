@@ -6,7 +6,6 @@
     <title>Weniger wegwerfen Woche | Case Board</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* Modern Detective Palette */
         :root {
             --detective-teal: #3dbcc0;
             --evidence-green: #8cc63f;
@@ -29,7 +28,6 @@
             margin: 40px auto;
         }
 
-        /* Header Section */
         header {
             text-align: center;
             margin-bottom: 50px;
@@ -52,7 +50,6 @@
             text-transform: uppercase;
         }
 
-        /* Investigation Legend */
         .investigation-legend {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -69,7 +66,6 @@
         .clue-label { font-weight: 700; color: var(--detective-teal); font-size: 0.85rem; display: block; text-transform: uppercase; }
         .clue-points { font-size: 0.75rem; color: #636e72; font-weight: 600; }
 
-        /* Podium Leaderboard */
         .podium-card {
             background: var(--white);
             border: 2px solid #eee;
@@ -88,11 +84,8 @@
         }
 
         table { width: 100%; border-collapse: collapse; }
-        
         tr.rank-row { border-bottom: 1px solid #f1f1f1; transition: 0.3s; }
-        tr.rank-row:last-child { border-bottom: none; }
         tr.rank-row:hover { background-color: #fafafa; }
-
         td { padding: 25px 10px; }
 
         .rank-id {
@@ -102,14 +95,11 @@
             width: 60px;
         }
 
-        /* Rank-specific colors */
         tr.rank-1 .rank-id { color: var(--clue-coral); }
         tr.rank-2 .rank-id { color: var(--detective-teal); }
         tr.rank-3 .rank-id { color: var(--evidence-green); }
 
         .unit-name { font-weight: 700; font-size: 1.25rem; display: block; }
-        .fair-play-label { font-size: 0.75rem; color: #b2bec3; text-transform: uppercase; font-weight: 700; letter-spacing: 1px; }
-
         .score-box {
             background: var(--evidence-green);
             color: var(--white);
@@ -117,11 +107,9 @@
             border-radius: 12px;
             font-weight: 800;
             font-size: 1.4rem;
-            display: inline-block;
             float: right;
         }
 
-        /* National Impact Counter */
         .national-report {
             margin-top: 50px;
             background: var(--dark-text);
@@ -129,6 +117,7 @@
             padding: 45px;
             border-radius: 25px;
             text-align: center;
+            margin-bottom: 40px;
         }
 
         .impact-val {
@@ -139,15 +128,39 @@
             margin: 15px 0;
         }
 
-        .impact-sub { font-size: 0.95rem; opacity: 0.8; max-width: 550px; margin: 0 auto; line-height: 1.5; }
+        /* NEW: Footer Logo Section */
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding-top: 40px;
+            border-top: 2px solid var(--case-file-white);
+            margin-top: 40px;
+        }
 
-        .loading-overlay { text-align: center; padding: 40px; font-weight: 700; color: var(--detective-teal); }
+        .footer-logos img {
+            max-height: 55px; /* Keeps logos elegant and consistent */
+            filter: grayscale(20%); /* Modern look */
+            transition: 0.3s;
+        }
+
+        .footer-logos img:hover {
+            filter: grayscale(0%);
+        }
+
+        .partner-label {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #b2bec3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
 
         @media (max-width: 600px) {
-            h1 { font-size: 2rem; }
-            .investigation-legend { grid-template-columns: 1fr; }
-            .rank-id { font-size: 1.4rem; width: 40px; }
-            .score-box { font-size: 1.1rem; padding: 8px 12px; }
+            .footer-logos { flex-direction: column; gap: 30px; }
         }
     </style>
 </head>
@@ -183,7 +196,7 @@
         <table id="leaderboard">
             <tbody id="tableBody">
                 <tr>
-                    <td colspan="3" class="loading-overlay">Analyzing evidence files...</td>
+                    <td colspan="3" style="text-align:center; padding: 40px;">Analyzing evidence files...</td>
                 </tr>
             </tbody>
         </table>
@@ -192,15 +205,18 @@
     <div class="national-report">
         <div style="text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.8rem; color: var(--detective-teal);">Closing the 25% Implementation Gap</div>
         <div class="impact-val" id="totalImpact">0</div>
-        <p class="impact-sub">Total Actions logged by Swiss Waste Detectives this week to ensure no edible food is left behind.</p>
+        <p style="opacity: 0.8; font-size: 0.95rem;">Total "Hero Actions" logged by Swiss Waste Detectives this week.</p>
     </div>
+
+    <div class="partner-label">Core Strategic Partners</div>
+    <footer class="footer-logos">
+        <img src="foodwaste-logo.png" alt="foodwaste.ch">
+        <img src="swiss-logo.png" alt="Schweizerische Eidgenossenschaft">
+    </footer>
 </div>
 
 <script>
-    // CSV URL from your Google Sheet
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
-    
-    // Filter this for the specific school you are presenting
     const targetSchool = "Your School Name"; 
 
     async function fetchCaseData() {
@@ -217,7 +233,6 @@
                 const schoolName = cols[0]?.trim();
                 const classIdentifier = cols[1]?.trim();
                 
-                // Tally global actions (Rescue + Chef + Guard)
                 const r = parseInt(cols[2]) || 0;
                 const c = parseInt(cols[3]) || 0;
                 const g = parseInt(cols[4]) || 0;
@@ -225,26 +240,19 @@
 
                 const fairPlayScore = parseFloat(cols[6]);
 
-                // Filter for top units in the specific school
                 if (schoolName === targetSchool && !isNaN(fairPlayScore)) {
                     allCompetitors.push({ classIdentifier, fairPlayScore });
                 }
             });
 
-            // Update UI: National Counter
             document.getElementById('totalImpact').innerText = totalActions.toLocaleString();
             document.getElementById('currentSchool').innerText = `${targetSchool.toUpperCase()} TOP INVESTIGATORS`;
 
-            // UI Ranking: Sort High -> Low and take Top 3
             allCompetitors.sort((a, b) => b.fairPlayScore - a.fairPlayScore);
             const podiumUnits = allCompetitors.slice(0, 3);
             
             const tableBody = document.getElementById('tableBody');
             tableBody.innerHTML = '';
-
-            if (podiumUnits.length === 0) {
-                tableBody.innerHTML = '<tr><td colspan="3" class="loading-overlay">No active cases reported for this unit yet.</td></tr>';
-            }
 
             podiumUnits.forEach((unit, index) => {
                 const tr = document.createElement('tr');
@@ -253,7 +261,7 @@
                     <td class="rank-id">#${index + 1}</td>
                     <td>
                         <div class="unit-name">Class ${unit.classIdentifier}</div>
-                        <div class="fair-play-label">Fair Play Evidence Score</div>
+                        <div style="font-size: 0.75rem; color: #b2bec3; font-weight: 700; text-transform: uppercase;">Fair Play Evidence Score</div>
                     </td>
                     <td><div class="score-box">${unit.fairPlayScore.toFixed(2)}</div></td>
                 `;
@@ -261,12 +269,10 @@
             });
 
         } catch (error) {
-            console.error("Critical System Error:", error);
-            document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" class="loading-overlay">Evidence sync failed. Re-initiating...</td></tr>';
+            console.error("Board sync failed.");
         }
     }
 
-    // Auto-refresh the investigation every 60 seconds
     fetchCaseData();
     setInterval(fetchCaseData, 60000);
 </script>
