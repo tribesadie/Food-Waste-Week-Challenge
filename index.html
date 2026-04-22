@@ -3,376 +3,247 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>September Save-Off | Swiss School Challenge</title>
+    <title>Weniger wegwerfen Woche | Case Board</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        /* CSS: The foodwaste.ch Aesthetic Palette */
         :root {
-            --turquoise: #3dbcc0;
-            --bright-green: #8cc63f;
-            --orange: #f7941d;
-            --off-white: #f9f7f2;
-            --dark-text: #333333;
-            --white: #ffffff;
+            --detective-teal: #3dbcc0;
+            --evidence-green: #8cc63f;
+            --clue-coral: #ff6f61;
+            --case-file-white: #f9f7f2;
+            --dark-text: #2d3436;
         }
 
         body {
             font-family: 'Open Sans', sans-serif;
-            background-color: var(--white);
+            background-color: #ffffff;
             margin: 0;
             padding: 20px;
             color: var(--dark-text);
-            line-height: 1.6;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 850px;
             margin: 40px auto;
         }
 
-        /* Header Section */
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         h1 {
             font-family: 'Montserrat', sans-serif;
-            color: var(--turquoise);
-            font-size: 2.8rem;
-            margin-bottom: 10px;
-            letter-spacing: -1px;
-        }
-
-        .subtitle {
-            font-size: 1.1rem;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        /* Icon Legend Section */
-        .legend-container {
-            display: flex;
-            justify-content: space-around;
-            margin-bottom: 30px;
-            text-align: center;
-            background: var(--white);
-            padding: 25px;
-            border-radius: 20px;
-            border: 1px solid #eee;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
-        }
-
-        .legend-item {
-            flex: 1;
-            padding: 0 10px;
-        }
-
-        .legend-item:not(:last-child) {
-            border-right: 1px solid #eee;
-        }
-
-        .legend-emoji {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            display: block;
-        }
-
-        .legend-title {
-            display: block;
-            font-weight: 700;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            letter-spacing: 1px;
-            margin-bottom: 5px;
-        }
-
-        .legend-desc {
-            font-size: 0.8rem;
-            color: #777;
-        }
-
-        /* The Leaderboard Card */
-        .card {
-            background: var(--off-white);
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-            border: 1px solid #eee;
-        }
-
-        .card-label {
-            display: inline-block;
-            background: var(--turquoise);
-            color: white;
-            padding: 6px 18px;
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.75rem;
-            margin-bottom: 25px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: separate;
-            border-spacing: 0 12px;
-        }
-
-        th {
-            text-align: left;
-            padding: 0 20px;
-            color: #999;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-        }
-
-        /* Row Styling */
-        tr.competitor-row {
-            background: var(--white);
-            transition: all 0.3s ease;
-        }
-
-        tr.competitor-row:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-
-        td {
-            padding: 20px;
-            vertical-align: middle;
-        }
-
-        td:first-child { border-radius: 15px 0 0 15px; width: 60px; }
-        td:last-child { border-radius: 0 15px 15px 0; text-align: right; }
-
-        .rank-number {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: var(--turquoise);
-        }
-
-        .school-info {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .school-name {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--dark-text);
-        }
-
-        .class-id {
-            color: #aaa;
-            font-size: 0.85rem;
-            font-weight: 600;
-        }
-
-        .score-badge {
-            background: var(--bright-green);
-            color: white;
-            padding: 10px 20px;
-            border-radius: 12px;
-            font-weight: 700;
-            font-size: 1.2rem;
-            display: inline-block;
-        }
-
-        /* Special Styling for Rank #1 */
-        tr.first-place {
-            outline: 2px solid var(--orange);
-        }
-        tr.first-place td {
-            background: #fffdfa;
-        }
-        tr.first-place .rank-number {
-            color: var(--orange);
-        }
-
-        /* Impact Counter Section */
-        .impact-footer {
-            margin-top: 40px;
-            text-align: center;
-            padding: 30px;
-            background: var(--turquoise);
-            color: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 20px rgba(61, 188, 192, 0.2);
-        }
-
-        .impact-label {
-            font-size: 0.85rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            opacity: 0.9;
-        }
-
-        .impact-number {
+            color: var(--detective-teal);
             font-size: 3rem;
-            font-weight: 800;
-            font-family: 'Montserrat', sans-serif;
+            margin-bottom: 5px;
+            text-transform: uppercase;
         }
 
-        .impact-desc {
+        .case-status {
+            font-weight: 700;
+            color: var(--clue-coral);
+            letter-spacing: 2px;
             font-size: 0.9rem;
-            opacity: 0.8;
-            margin-top: 5px;
         }
 
-        .loading-text {
+        /* Detective Legend */
+        .investigation-legend {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            background: var(--case-file-white);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 8px solid var(--detective-teal);
+        }
+
+        .clue-type {
             text-align: center;
-            padding: 50px;
-            color: var(--turquoise);
-            font-weight: 600;
-            font-style: italic;
         }
 
-        @media (max-width: 600px) {
-            .legend-container { flex-direction: column; gap: 20px; }
-            .legend-item:not(:last-child) { border-right: none; border-bottom: 1px solid #eee; padding-bottom: 20px; }
-            h1 { font-size: 2rem; }
+        .clue-icon { font-size: 2.2rem; display: block; margin-bottom: 8px; }
+        .clue-label { font-weight: 700; color: var(--detective-teal); font-size: 0.85rem; display: block; }
+        .clue-points { font-size: 0.75rem; color: #636e72; }
+
+        /* Podium Leaderboard */
+        .podium-card {
+            background: white;
+            border: 2px solid #eee;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
+
+        .school-header {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--detective-teal);
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            border-bottom: 2px solid var(--case-file-white);
+            padding-bottom: 10px;
+        }
+
+        table { width: 100%; border-collapse: collapse; }
+        
+        tr.rank-row {
+            transition: 0.3s;
+            border-bottom: 1px solid #eee;
+        }
+
+        td { padding: 20px 10px; }
+
+        .rank-id {
+            font-weight: 800;
+            font-size: 1.5rem;
+            width: 50px;
+        }
+
+        /* Top 3 Highlighting */
+        tr.rank-1 .rank-id { color: var(--clue-coral); }
+        tr.rank-2 .rank-id { color: var(--detective-teal); }
+        tr.rank-3 .rank-id { color: var(--evidence-green); }
+
+        .unit-name { font-weight: 700; font-size: 1.2rem; }
+        .fair-play-label { font-size: 0.8rem; color: #b2bec3; text-transform: uppercase; }
+
+        .score-box {
+            background: var(--evidence-green);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1.3rem;
+            float: right;
+        }
+
+        /* National Impact Counter */
+        .national-report {
+            margin-top: 50px;
+            background: var(--dark-text);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .impact-val {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--evidence-green);
+            font-family: 'Montserrat', sans-serif;
+            margin: 10px 0;
+        }
+
+        .impact-sub { font-size: 0.9rem; opacity: 0.8; max-width: 500px; margin: 0 auto; }
     </style>
 </head>
 <body>
 
 <div class="container">
     <header>
-        <h1>SEPTEMBER SAVE-OFF</h1>
-        <p class="subtitle">Turning Swiss students into Kitchen Heroes. One meal, one storage hack, and one creative recipe at a time.</p>
+        <div class="case-status">OFFICIAL INVESTIGATION LOG</div>
+        <h1>Weniger wegwerfen Woche</h1>
+        <p>Solving the case of the missing 620 CHF per person. [cite: 55]</p>
     </header>
 
-    <div class="legend-container">
-        <div class="legend-item">
-            <span class="legend-emoji">🦸‍♂️</span>
-            <span class="legend-title" style="color: var(--orange);">The Rescue</span>
-            <span class="legend-desc">Eat leftovers instead of tossing (10 pts)</span>
+    <div class="investigation-legend">
+        <div class="clue-type">
+            <span class="clue-icon">🕵️‍♀️</span>
+            <span class="clue-label">The Second Chance</span>
+            <span class="clue-points">Rescue (10 pts)</span>
         </div>
-        <div class="legend-item">
-            <span class="legend-emoji">👨‍🍳</span>
-            <span class="legend-title" style="color: var(--turquoise);">The Chef</span>
-            <span class="legend-desc">Creative reuse of "waste" items (15 pts)</span>
+        <div class="clue-type">
+            <span class="clue-icon">🎨</span>
+            <span class="clue-label">The Master Disguise</span>
+            <span class="clue-points">Chef (15 pts)</span>
         </div>
-        <div class="legend-item">
-            <span class="legend-emoji">🛡️</span>
-            <span class="legend-title" style="color: var(--bright-green);">The Guard</span>
-            <span class="legend-desc">Correct storage to prolong life (5 pts)</span>
+        <div class="clue-type">
+            <span class="clue-icon">🔒</span>
+            <span class="clue-label">The Safekeeping</span>
+            <span class="clue-points">Guard (5 pts)</span>
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-label">Live Standings</div>
+    <div class="podium-card">
+        <div class="school-header" id="currentSchool">LOCAL UNIT STANDINGS</div>
         <table id="leaderboard">
-            <thead>
-                <tr>
-                    <th>Rank</th>
-                    <th>School & Class</th>
-                    <th style="text-align: right;">Fair Play Score</th>
-                </tr>
-            </thead>
             <tbody id="tableBody">
-                <tr>
-                    <td colspan="3" class="loading-text">Syncing with Swiss school data...</td>
-                </tr>
-            </tbody>
+                </tbody>
         </table>
     </div>
 
-    <div class="impact-footer">
-        <div class="impact-label">Total Swiss Impact</div>
-        <div class="impact-number" id="totalImpact">0</div>
-        <div class="impact-desc">Collective actions taken by students and parents this week.</div>
+    <div class="national-report">
+        <div class="case-status" style="color: var(--detective-teal);">SWISS CASE RECOVERY PROGRESS</div>
+        <div class="impact-val" id="totalImpact">0</div>
+        <p class="impact-sub">Total "Hero Actions" logged across the nation to close the 2030 implementation gap. [cite: 11, 15]</p>
     </div>
 </div>
 
 <script>
-    // Live link to your Google Sheets Pivot Table CSV
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
+    const csvUrl = 'YOUR_GOOGLE_SHEET_CSV_LINK_HERE';
+    const targetSchool = "Your School Name"; // Set this to filter per school
 
-    async function updateDashboard() {
+    async function updateBoard() {
         try {
             const response = await fetch(csvUrl);
-            const csvText = await response.text();
+            const data = await response.text();
+            const rows = data.split('\n').slice(1);
             
-            // Clean the data: Split by lines and remove the header row
-            const rows = csvText.split('\n').slice(1);
-            
-            const tableBody = document.getElementById('tableBody');
-            const impactDisplay = document.getElementById('totalImpact');
-            
-            tableBody.innerHTML = ''; // Clear the loading text
-            
-            let competitors = [];
+            let allCompetitors = [];
             let totalActions = 0;
 
             rows.forEach(row => {
                 const cols = row.split(',');
+                const school = cols[0]?.trim();
+                const classId = cols[1]?.trim();
                 
-                // MAPPING (based on your specific Pivot Table layout):
-                // cols[0] = School Name
-                // cols[1] = Class ID
-                // cols[2,3,4] = Raw Action Counts (Rescue, Chef, Guard)
-                // cols[6] = Fair Play Score
-                
-                const school = cols[0] ? cols[0].trim() : "";
-                const classId = cols[1] ? cols[1].trim() : "";
-                
-                // Calculate Global Actions (The Impact Counter)
-                const rCount = parseInt(cols[2]) || 0;
-                const cCount = parseInt(cols[3]) || 0;
-                const gCount = parseInt(cols[4]) || 0;
-                totalActions += (rCount + cCount + gCount);
+                // Impact Logic
+                const r = parseInt(cols[2]) || 0;
+                const c = parseInt(cols[3]) || 0;
+                const g = parseInt(cols[4]) || 0;
+                totalActions += (r + c + g);
 
                 const score = parseFloat(cols[6]);
 
-                // Filter: Ignore empty rows and summary/total rows from Google Sheets
-                if (school && !school.toLowerCase().includes("total") && !school.toLowerCase().includes("grand") && !isNaN(score)) {
-                    competitors.push({ school, classId, score });
+                if (school === targetSchool && !isNaN(score)) {
+                    allCompetitors.push({ classId, score });
                 }
             });
 
-            // UI Update: The National Impact Counter
-            impactDisplay.innerText = totalActions.toLocaleString();
+            // UI Update: Impact
+            document.getElementById('totalImpact').innerText = totalActions.toLocaleString();
+            document.getElementById('currentSchool').innerText = `${targetSchool.toUpperCase()} TOP INVESTIGATORS`;
 
-            // UI Update: Sort competitors (High Score -> Low Score)
-            competitors.sort((a, b) => b.score - a.score);
+            // UI Update: Ranking (Top 3 only)
+            allCompetitors.sort((a, b) => b.score - a.score);
+            const topThree = allCompetitors.slice(0, 3);
+            
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
 
-            competitors.forEach((c, index) => {
+            topThree.forEach((unit, index) => {
                 const tr = document.createElement('tr');
-                tr.className = 'competitor-row' + (index === 0 ? ' first-place' : '');
-                
+                tr.className = `rank-row rank-${index + 1}`;
                 tr.innerHTML = `
-                    <td class="rank-number">${index + 1}</td>
+                    <td class="rank-id">#${index + 1}</td>
                     <td>
-                        <div class="school-info">
-                            <span class="school-name">${c.school}</span>
-                            <span class="class-id">Class ${c.classId}</span>
-                        </div>
+                        <div class="unit-name">Class ${unit.classId}</div>
+                        <div class="fair-play-label">Fair Play Evidence Score</div>
                     </td>
-                    <td style="text-align: right;">
-                        <span class="score-badge">${c.score.toFixed(2)}</span>
-                    </td>
+                    <td><div class="score-box">${unit.score.toFixed(2)}</div></td>
                 `;
                 tableBody.appendChild(tr);
             });
 
-        } catch (err) {
-            console.error('Data Sync Error:', err);
-            document.getElementById('tableBody').innerHTML = '<tr><td colspan="3" style="text-align:center; color:red;">Connection error. Please refresh.</td></tr>';
+        } catch (e) {
+            console.error("Board sync error:", e);
         }
     }
 
-    // Initial Load
-    updateDashboard();
-
-    // Live Refresh: Updates the data every 60 seconds without reloading the page
-    setInterval(updateDashboard, 60000);
+    updateBoard();
+    setInterval(updateBoard, 60000);
 </script>
 
 </body>
