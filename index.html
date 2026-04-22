@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weniger wegwerfen Woche | Case Board Winterthur</title>
+    <title>Weniger wegwerfen Woche | Case Board</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -15,44 +15,152 @@
             --white: #ffffff;
         }
 
-        body { font-family: 'Open Sans', sans-serif; background-color: var(--white); margin: 0; padding: 20px; color: var(--dark-text); }
-        .container { max-width: 850px; margin: 40px auto; }
-        header { text-align: center; margin-bottom: 50px; }
-        h1 { font-family: 'Montserrat', sans-serif; color: var(--detective-teal); font-size: 2.8rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: -1px; }
-        .sub-header { font-weight: 800; color: var(--clue-coral); letter-spacing: 2px; font-size: 0.95rem; text-transform: uppercase; }
-
-        .investigation-legend {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-bottom: 40px;
-            background: var(--case-file-white); padding: 25px; border-radius: 20px; border-left: 8px solid var(--detective-teal);
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--white);
+            margin: 0;
+            padding: 20px;
+            color: var(--dark-text);
         }
+
+        .container {
+            max-width: 850px;
+            margin: 40px auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--detective-teal);
+            font-size: 2.8rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .sub-header {
+            font-weight: 800;
+            color: var(--clue-coral);
+            letter-spacing: 2px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        /* The Detective Legend */
+        .investigation-legend {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 40px;
+            background: var(--case-file-white);
+            padding: 25px;
+            border-radius: 20px;
+            border-left: 8px solid var(--detective-teal);
+        }
+
         .clue-type { text-align: center; }
         .clue-icon { font-size: 2.2rem; display: block; margin-bottom: 8px; }
         .clue-label { font-weight: 700; color: var(--detective-teal); font-size: 0.85rem; display: block; text-transform: uppercase; }
         .clue-points { font-size: 0.75rem; color: #636e72; font-weight: 600; }
 
+        /* Podium Leaderboard */
         .podium-card {
-            background: var(--white); border: 2px solid #eee; border-radius: 25px;
-            padding: 40px; box-shadow: 0 15px 40px rgba(0,0,0,0.06);
+            background: var(--white);
+            border: 2px solid #eee;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.06);
         }
-        .school-header { font-family: 'Montserrat', sans-serif; color: var(--detective-teal); font-size: 1.5rem; margin-bottom: 30px; padding-bottom: 12px; border-bottom: 3px solid var(--case-file-white); }
+
+        .school-header {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--detective-teal);
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid var(--case-file-white);
+        }
 
         table { width: 100%; border-collapse: collapse; }
         tr.rank-row { border-bottom: 1px solid #f1f1f1; transition: 0.3s; }
         td { padding: 25px 10px; }
-        .rank-id { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.8rem; width: 60px; }
+
+        .rank-id {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            font-size: 1.8rem;
+            width: 60px;
+        }
+
         tr.rank-1 .rank-id { color: var(--clue-coral); }
         tr.rank-2 .rank-id { color: var(--detective-teal); }
         tr.rank-3 .rank-id { color: var(--evidence-green); }
 
         .unit-name { font-weight: 700; font-size: 1.25rem; display: block; }
-        .score-box { background: var(--evidence-green); color: var(--white); padding: 10px 18px; border-radius: 12px; font-weight: 800; font-size: 1.4rem; float: right; }
+        .score-box {
+            background: var(--evidence-green);
+            color: var(--white);
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 800;
+            font-size: 1.4rem;
+            float: right;
+        }
 
-        .national-report { margin-top: 50px; background: var(--dark-text); color: var(--white); padding: 45px; border-radius: 25px; text-align: center; }
-        .impact-val { font-size: 4rem; font-weight: 800; color: var(--evidence-green); font-family: 'Montserrat', sans-serif; margin: 15px 0; }
+        /* National Impact Counter */
+        .national-report {
+            margin-top: 50px;
+            background: var(--dark-text);
+            color: var(--white);
+            padding: 45px;
+            border-radius: 25px;
+            text-align: center;
+        }
 
-        .footer-logos { display: flex; justify-content: center; align-items: center; gap: 60px; padding-top: 40px; border-top: 2px solid var(--case-file-white); margin-top: 40px; }
-        .footer-logos img { max-height: 55px; filter: grayscale(20%); transition: 0.3s; }
-        .partner-label { text-align: center; font-size: 0.75rem; font-weight: 700; color: #b2bec3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+        .impact-val {
+            font-size: 4rem;
+            font-weight: 800;
+            color: var(--evidence-green);
+            font-family: 'Montserrat', sans-serif;
+            margin: 15px 0;
+        }
+
+        /* Partner Logos Footer */
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 60px;
+            padding-top: 40px;
+            border-top: 2px solid var(--case-file-white);
+            margin-top: 40px;
+        }
+
+        .footer-logos img {
+            max-height: 55px;
+            filter: grayscale(20%);
+            transition: 0.3s;
+        }
+
+        .partner-label {
+            text-align: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #b2bec3;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        @media (max-width: 600px) {
+            .footer-logos { flex-direction: column; gap: 30px; }
+            h1 { font-size: 2rem; }
+            .investigation-legend { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
@@ -61,23 +169,23 @@
     <header>
         <div class="sub-header">Case Recovery Status: Active in Winterthur</div>
         <h1>Weniger wegwerfen Woche</h1>
-        <p style="color: #636e72; font-weight: 600;">SOLVING THE MYSTERY OF THE HIDDEN HARVEST</p>
+        <p style="color: #636e72; font-weight: 600;">SOLVING THE MYSTERY OF THE AVOIDABLE FOOD WASTE</p>
     </header>
 
     <div class="investigation-legend">
         <div class="clue-type">
             <span class="clue-icon">🕵️‍♀️</span>
-            <span class="clue-label">The Second Chance</span>
+            <span class="clue-label">Evidence Recovery</span>
             <span class="clue-points">RESCUE (10 PTS)</span>
         </div>
         <div class="clue-type">
             <span class="clue-icon">🎨</span>
-            <span class="clue-label">The Master Disguise</span>
+            <span class="clue-label">Master Disguise</span>
             <span class="clue-points">CHEF (15 PTS)</span>
         </div>
         <div class="clue-type">
             <span class="clue-icon">🔒</span>
-            <span class="clue-label">The Safekeeping</span>
+            <span class="clue-label">The Secure Vault</span>
             <span class="clue-points">GUARD (5 PTS)</span>
         </div>
     </div>
@@ -86,15 +194,15 @@
         <div class="school-header" id="currentSchool">PRIMARSCHULE NEUWIESEN TOP INVESTIGATORS</div>
         <table id="leaderboard">
             <tbody id="tableBody">
-                <tr><td colspan="3" style="text-align:center; padding: 40px;">Analyzing Winterthur evidence files...</td></tr>
+                <tr><td colspan="3" style="text-align:center; padding: 40px;">Syncing with Mission Control...</td></tr>
             </tbody>
         </table>
     </div>
 
     <div class="national-report">
-        <div style="text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.8rem; color: var(--detective-teal);">National Case Progress</div>
+        <div style="text-transform: uppercase; letter-spacing: 2.5px; font-weight: 700; font-size: 0.8rem; color: var(--detective-teal);">Closing Implementation Gap</div>
         <div class="impact-val" id="totalImpact">0</div>
-        <p style="opacity: 0.8; font-size: 0.95rem;">Total actions taken by Waste Detectives to close the 2030 implementation gap[cite: 15].</p>
+        <p style="opacity: 0.8; font-size: 0.95rem;">Total actions taken by Swiss Waste Detectives to ensure no edible food is left behind.</p>
     </div>
 
     <div class="partner-label">Core Strategic Partners</div>
@@ -105,6 +213,7 @@
 </div>
 
 <script>
+    // Link to your Google Sheet CSV output
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
     const targetSchool = "Primarschule Neuwiesen"; 
 
@@ -119,8 +228,8 @@
 
             rows.forEach(row => {
                 const cols = row.split(',');
-                const schoolName = cols[0]?.trim();
-                const classIdentifier = cols[1]?.trim();
+                const schoolName = cols[0] ? cols[0].trim() : "";
+                const classId = cols[1] ? cols[1].trim() : "";
                 
                 const r = parseInt(cols[2]) || 0;
                 const c = parseInt(cols[3]) || 0;
@@ -129,12 +238,15 @@
 
                 const fairPlayScore = parseFloat(cols[6]);
 
+                // Filter for our specific Winterthur school
                 if (schoolName === targetSchool && !isNaN(fairPlayScore)) {
-                    allCompetitors.push({ classIdentifier, fairPlayScore });
+                    allCompetitors.push({ classId, fairPlayScore });
                 }
             });
 
             document.getElementById('totalImpact').innerText = totalActions.toLocaleString();
+
+            // Ranking Logic: Sort and take Top 3
             allCompetitors.sort((a, b) => b.fairPlayScore - a.fairPlayScore);
             const podiumUnits = allCompetitors.slice(0, 3);
             
@@ -147,18 +259,18 @@
                 tr.innerHTML = `
                     <td class="rank-id">#${index + 1}</td>
                     <td>
-                        <div class="unit-name">Class ${unit.classIdentifier}</div>
-                        <div style="font-size: 0.75rem; color: #b2bec3; font-weight: 700; text-transform: uppercase;">Fair Play Evidence Score</div>
+                        <div class="unit-name">Class ${unit.classId}</div>
+                        <div style="font-size: 0.75rem; color: #b2bec3; font-weight: 700; text-transform: uppercase;">Fair Evidence Score</div>
                     </td>
                     <td><div class="score-box">${unit.fairPlayScore.toFixed(2)}</div></td>
                 `;
                 tableBody.appendChild(tr);
             });
-        } catch (error) { console.error("Sync failed."); }
+        } catch (error) { console.error("Investigation Board failed to update."); }
     }
 
     fetchCaseData();
-    setInterval(fetchCaseData, 60000);
+    setInterval(fetchCaseData, 60000); // Check for new evidence every minute
 </script>
 
 </body>
