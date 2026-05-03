@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weniger wegwerfen Woche | Case Board</title>
+    <title>Weniger wegwerfen Woche | Ermittlungs-Board</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,7 +22,6 @@
         h1 { font-family: 'Montserrat', sans-serif; color: var(--detective-teal); font-size: 3rem; margin-bottom: 5px; text-transform: uppercase; letter-spacing: -1px; }
         .sub-header { font-weight: 800; color: var(--clue-coral); letter-spacing: 2px; font-size: 1rem; text-transform: uppercase; }
 
-        /* Mascot Legend Styling */
         .investigation-legend {
             display: grid; 
             grid-template-columns: repeat(3, 1fr); 
@@ -36,11 +35,10 @@
         }
         
         .clue-type { text-align: center; display: flex; flex-direction: column; align-items: center; }
-        .mascot-img { height: 200px; width: auto; margin-bottom: 15px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
+        .mascot-img { height: 180px; width: auto; margin-bottom: 15px; filter: drop-shadow(0 5px 15px rgba(0,0,0,0.1)); }
         .clue-label { font-weight: 800; color: var(--detective-teal); font-size: 0.9rem; display: block; text-transform: uppercase; margin-bottom: 4px; }
         .clue-points { font-size: 0.8rem; color: #636e72; font-weight: 700; background: #fff; padding: 3px 10px; border-radius: 20px; border: 1px solid #eee; }
 
-        /* Podium Leaderboard */
         .podium-card {
             background: var(--white); border: 2px solid #eee; border-radius: 30px;
             padding: 40px; box-shadow: 0 15px 45px rgba(0,0,0,0.05);
@@ -61,21 +59,17 @@
         .score-box { background: var(--evidence-green); color: var(--white); padding: 12px 20px; border-radius: 15px; font-weight: 800; font-size: 1.5rem; float: right; min-width: 65px; text-align: center; box-shadow: 0 4px 10px rgba(140, 198, 63, 0.3); }
         .pending-score { background: #dfe6e9; color: #b2bec3; box-shadow: none; }
 
-        /* National Impact Section */
-        .national-report { margin-top: 50px; background: var(--dark-text); color: var(--white); padding: 50px; border-radius: 30px; text-align: center; position: relative; overflow: hidden; }
+        .national-report { margin-top: 50px; background: var(--dark-text); color: var(--white); padding: 50px; border-radius: 30px; text-align: center; }
         .impact-val { font-size: 4.5rem; font-weight: 800; color: var(--evidence-green); font-family: 'Montserrat', sans-serif; margin: 15px 0; }
-        .impact-sub { font-size: 1rem; opacity: 0.85; max-width: 550px; margin: 0 auto; font-weight: 400; }
+        .impact-sub { font-size: 1rem; opacity: 0.85; max-width: 600px; margin: 0 auto; font-weight: 400; }
 
-        /* Logos Footer */
         .footer-logos { display: flex; justify-content: center; align-items: center; gap: 60px; padding-top: 40px; border-top: 2px solid var(--case-file-white); margin: 50px 0; }
         .footer-logos img { max-height: 60px; transition: 0.3s; opacity: 0.9; }
-        .footer-logos img:hover { opacity: 1; transform: scale(1.05); }
+        .partner-label { text-align: center; font-size: 0.75rem; font-weight: 700; color: #b2bec3; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
 
         @media (max-width: 768px) {
             .investigation-legend { grid-template-columns: 1fr; }
-            h1 { font-size: 2.2rem; }
-            .mascot-img { height: 120px; }
-            .footer-logos { flex-direction: column; gap: 40px; }
+            .mascot-img { height: 150px; }
         }
     </style>
 </head>
@@ -83,43 +77,45 @@
 
 <div class="container">
     <header>
-        <div class="sub-header">Case Status: Active in Winterthur</div>
+        <div class="sub-header">Fallstatus: Aktiv in Winterthur</div>
         <h1>Weniger wegwerfen Woche</h1>
-        <p style="color: #636e72; font-weight: 700; font-size: 1.1rem;">SOLVING THE MYSTERY OF THE AVOIDABLE FOOD WASTE</p>
+        <p style="color: #636e72; font-weight: 700; font-size: 1.1rem;">DAS RÄTSEL DER VERMEIDBAREN LEBENSMITTELABFÄLLE LÖSEN</p>
     </header>
 
     <div class="investigation-legend">
         <div class="clue-type">
-            <img src="detectives.png" alt="Rescue Mascot" class="mascot-img">
-            <span class="clue-label">Evidence Recovery</span>
-            <span class="clue-points">RESCUE (10 PTS)</span>
+            <img src="detectives.png" alt="Rettung" class="mascot-img">
+            <span class="clue-label">Beweissicherung</span>
+            <span class="clue-points">RETTUNG (10 PKT)</span>
         </div>
         <div class="clue-type">
-            <img src="the%20chef.png" alt="Chef Mascot" class="mascot-img">
-            <span class="clue-label">Master Disguise</span>
-            <span class="clue-points">CHEF (15 PTS)</span>
+            <img src="the%20chef.png" alt="Meister-Koch" class="mascot-img">
+            <span class="clue-label">Meisterhafte Tarnung</span>
+            <span class="clue-points">KOCH (15 PKT)</span>
         </div>
         <div class="clue-type">
-            <img src="the%20guard%202.png" alt="Guard Mascot" class="mascot-img">
-            <span class="clue-label">The Secure Vault</span>
-            <span class="clue-points">GUARD (5 PTS)</span>
+            <img src="the%20guard%202.png" alt="Sicherer Tresor" class="mascot-img">
+            <span class="clue-label">Der sichere Tresor</span>
+            <span class="clue-points">SCHUTZ (5 PKT)</span>
         </div>
     </div>
 
     <div class="podium-card">
-        <div class="school-header">PRIMARSCHULE NEUWIESEN TOP INVESTIGATORS</div>
+        <div class="school-header">TOP-ERMITTLER DER PRIMARSCHULE NEUWIESEN</div>
         <table id="leaderboard">
             <tbody id="tableBody">
-                </tbody>
+                <!-- Daten werden geladen -->
+            </tbody>
         </table>
     </div>
 
     <div class="national-report">
-        <div style="text-transform: uppercase; letter-spacing: 3px; font-weight: 800; font-size: 0.85rem; color: var(--detective-teal);">Closing the Food Waste Implementation Gap</div>
+        <div style="text-transform: uppercase; letter-spacing: 3px; font-weight: 800; font-size: 0.85rem; color: var(--detective-teal);">Die 25%-Umsetzungslücke schliessen</div>
         <div class="impact-val" id="totalImpact">0</div>
-        <p class="impact-sub">Total actions logged by Swiss Waste Detectives this week to recover food value in our homes.</p>
+        <p class="impact-sub">Gesamtzahl der Aktionen, die von Schweizer Abfalldetektiven in dieser Woche protokolliert wurden, um den Wert von Lebensmitteln in unseren Haushalten zu retten.</p>
     </div>
 
+    <div class="partner-label">Strategische Hauptpartner</div>
     <footer class="footer-logos">
         <img src="foodwaste-logo.png" alt="foodwaste.ch">
         <img src="swiss-logo.png" alt="Schweizerische Eidgenossenschaft">
@@ -127,7 +123,6 @@
 </div>
 
 <script>
-    // CSV URL from your Google Sheet
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vT-06mA7TESFWrQPGT-Lnyetq0gfOvdyuls4sa-9DUzt0JokhqUaz3XuUfdNdchsfLE6dcsG6iD00q6/pub?gid=1706321214&single=true&output=csv';
     const targetSchool = "Primarschule Neuwiesen"; 
 
@@ -169,8 +164,8 @@
                     tr.innerHTML = `
                         <td class="rank-id">#${i + 1}</td>
                         <td>
-                            <div class="unit-name">Class ${allCompetitors[i].classId}</div>
-                            <div class="fair-play-label">Fair Play Evidence Score</div>
+                            <div class="unit-name">Klasse ${allCompetitors[i].classId}</div>
+                            <div class="fair-play-label">Fair-Play-Beweispunkte</div>
                         </td>
                         <td><div class="score-box">${allCompetitors[i].score.toFixed(2)}</div></td>
                     `;
@@ -178,15 +173,15 @@
                     tr.innerHTML = `
                         <td class="rank-id">#${i + 1}</td>
                         <td>
-                            <div class="unit-name" style="color: #b2bec3;">Case Pending...</div>
-                            <div class="fair-play-label" style="color: #dfe6e9;">Awaiting Evidence</div>
+                            <div class="unit-name" style="color: #b2bec3;">Fall ausstehend...</div>
+                            <div class="fair-play-label" style="color: #dfe6e9;">Warte auf Beweise</div>
                         </td>
                         <td><div class="score-box pending-score">--</div></td>
                     `;
                 }
                 tableBody.appendChild(tr);
             }
-        } catch (error) { console.error("System Sync Error."); }
+        } catch (error) { console.error("Synchronisierung fehlgeschlagen."); }
     }
 
     fetchCaseData();
