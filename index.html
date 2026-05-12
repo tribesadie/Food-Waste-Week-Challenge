@@ -133,40 +133,45 @@
             
             let allCompetitors = [];
             let totalActions = 0;
-            let currentSchoolName = ""; // "Fill-forward" Logik für Pivot-Tabellen
+            let lastFoundSchool = ""; // Hält den Namen der Schule für leere Zeilen fest
 
             rows.forEach(row => {
                 const cols = row.split(',');
-                if (cols.length < 7) return; // Überspringe leere Zeilen
+                if (cols.length < 2) return;
 
-                // Prüfe Schulnamen: Wenn leer, nimm den letzten bekannten (Pivot-Grouping)
+                // Pivot-Logik: Wenn Spalte A leer ist, nimm die Schule aus der Zeile darüber
                 let schoolName = cols[0] ? cols[0].trim() : "";
-                if (schoolName === "" && currentSchoolName !== "") {
-                    schoolName = currentSchoolName;
-                } else if (schoolName !== "") {
-                    currentSchoolName = schoolName;
+                if (schoolName !== "") {
+                    lastFoundSchool = schoolName;
+                } else {
+                    schoolName = lastFoundSchool;
                 }
 
                 const classId = cols[1] ? cols[1].trim() : "";
+                
+                // Punkteberechnung
                 const r = parseInt(cols[2]) || 0;
                 const c = parseInt(cols[3]) || 0;
                 const g = parseInt(cols[4]) || 0;
-                
                 totalActions += (r + c + g);
+
                 const score = parseFloat(cols[6]);
 
-                // Filtert jetzt korrekt, auch wenn die Zelle in der Pivot leer war
-                if (schoolName === targetSchool && !isNaN(score)) {
+                // WICHTIG: .includes() ist sicherer gegen kleine Tippfehler oder Leerzeichen
+                if (schoolName.includes(targetSchool) && !isNaN(score)) {
                     allCompetitors.push({ classId, score });
                 }
             });
 
             document.getElementById('totalImpact').innerText = totalActions.toLocaleString();
+            
+            // Ranking: Sortieren nach Score (Absteigend)
             allCompetitors.sort((a, b) => b.score - a.score);
             
             const tableBody = document.getElementById('tableBody');
             tableBody.innerHTML = '';
 
+            // Zeige immer 3 Plätze an (Podium)
             for (let i = 0; i < 3; i++) {
                 const tr = document.createElement('tr');
                 tr.className = `rank-row rank-${i + 1}`;
@@ -176,4 +181,30 @@
                         <td class="rank-id">#${i + 1}</td>
                         <td>
                             <div class="unit-name">Klasse ${allCompetitors[i].classId}</div>
-                            <div class="fair-play-label">Fair-
+                            <div class="fair-play-label">Fair-Play-Beweispunkte</div>
+                        </td>
+                        <td><div class="score-box">${allCompetitors[i].score.toFixed(2)}</div></td>
+                    `;
+                } else {
+                    tr.innerHTML = `
+                        <td class="rank-id">#${i + 1}</td>
+                        <td>
+                            <div class="unit-name" style="color: #b2bec3;">Fall ausstehend...</div>
+                            <div class="fair-play-label" style="color: #dfe6e9;">Warte auf Beweise</div>
+                        </td>
+                        <td><div class="score-box pending-score">--</div></td>
+                    `;
+                }
+                tableBody.appendChild(tr);
+            }
+        } catch (error) { 
+            console.error("Synchronisierung fehlgeschlagen:", error); 
+        }
+    }
+
+    fetchCaseData();
+    setInterval(fetchCaseData, 60000);
+</script>
+
+</body>
+</html>
